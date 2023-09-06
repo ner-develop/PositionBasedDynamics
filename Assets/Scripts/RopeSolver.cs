@@ -74,17 +74,14 @@ public class RopeSolver : MonoBehaviour
 			var algorithm = (Algorithm)UnityEditor.EditorGUILayout.EnumPopup("Algorithm", ropeSolver._algorithm);
 			if (UnityEditor.EditorGUI.EndChangeCheck())
 			{
-				UnityEditor.EditorUtility.SetDirty(target);
 				ropeSolver._algorithm = algorithm;
-				switch (algorithm)
+				ropeSolver._parameter = algorithm switch
 				{
-					case Algorithm.PBD:
-						ropeSolver._parameter = new PbdSimulator.Parameter();
-						break;
-					case Algorithm.XPBD:
-						ropeSolver._parameter = new XpbdSimulator.Parameter();
-						break;
-				}
+					Algorithm.PBD => new PbdSimulator.Parameter(),
+					Algorithm.XPBD => new XpbdSimulator.Parameter(),
+					_ => ropeSolver._parameter
+				};
+				UnityEditor.EditorUtility.SetDirty(ropeSolver);
 			}
 		}
 	}
