@@ -17,8 +17,6 @@ public class RopeSolver : MonoBehaviour
 	[SerializeField, HideInInspector] Algorithm _algorithm = Algorithm.PBD;
 	[SerializeReference] ISimulationParameter _parameter;
 
-	public Algorithm algorithm => _algorithm;
-
 	bool _initialized;
 	RopeObject _ropeObject;
 	ISimulator _simulator;
@@ -49,27 +47,6 @@ public class RopeSolver : MonoBehaviour
 		_simulator?.Step(dt);
 	}
 
-	public void SetAlgorithm(Algorithm algorithm)
-	{
-		if (_initialized)
-		{
-			Debug.LogWarning("初期化後にアルゴリズムを変更することはできません");
-			return;
-		}
-
-		_algorithm = algorithm;
-
-		switch (algorithm)
-		{
-			case Algorithm.PBD:
-				_parameter = new PbdSimulator.Parameter();
-				break;
-			case Algorithm.XPBD:
-				_parameter = new XpbdSimulator.Parameter();
-				break;
-		}
-	}
-
 	ISimulator GenerateSimulator(RopeObject ropeObject, ISimulationParameter parameter)
 	{
 		switch (_algorithm)
@@ -82,28 +59,37 @@ public class RopeSolver : MonoBehaviour
 				throw new ArgumentOutOfRangeException();
 		}
 	}
-}
 
 
 #if UNITY_EDITOR
-[UnityEditor.CustomEditor(typeof(RopeSolver))]
-public class RopeSolverEditor : UnityEditor.Editor
-{
-	public override void OnInspectorGUI()
+	[UnityEditor.CustomEditor(typeof(RopeSolver))]
+	class RopeSolverEditor : UnityEditor.Editor
 	{
-		base.OnInspectorGUI();
-
-		RopeSolver ropeSolver = (RopeSolver)target;
-
-		UnityEditor.EditorGUILayout.Space(30);
-
-		UnityEditor.EditorGUI.BeginChangeCheck();
-		var algorithm = (RopeSolver.Algorithm)UnityEditor.EditorGUILayout.EnumPopup("Algorithm", ropeSolver.algorithm);
-		if (UnityEditor.EditorGUI.EndChangeCheck())
+		public override void OnInspectorGUI()
 		{
-			ropeSolver.SetAlgorithm(algorithm);
-			UnityEditor.EditorUtility.SetDirty(target);
+			base.OnInspectorGUI();
+
+			RopeSolver ropeSolver = (RopeSolver)target;
+
+			UnityEditor.EditorGUILayout.Space(30);
+
+			UnityEditor.EditorGUI.BeginChangeCheck();
+			var algorithm = (Algorithm)UnityEditor.EditorGUILayout.EnumPopup("Algorithm", ropeSolver._algorithm);
+			if (UnityEditor.EditorGUI.EndChangeCheck())
+			{
+				UnityEditor.EditorUtility.SetDirty(target);
+				ropeSolver._algorithm = algorithm;
+				switch (algorithm)
+				{
+					case Algorithm.PBD:
+						ropeSolver._parameter = new PbdSimulator.Parameter();
+						break;
+					case Algorithm.XPBD:
+						ropeSolver._parameter = new XpbdSimulator.Parameter();
+						break;
+				}
+			}
 		}
 	}
-}
 #endif
+}

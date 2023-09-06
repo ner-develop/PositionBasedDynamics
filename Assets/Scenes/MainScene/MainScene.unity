@@ -1042,8 +1042,78 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7733369572480827594, guid: 4a0e2db724d71f9499fa536438e48a60,
         type: 3}
+      propertyPath: _algorithm
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733369572480827594, guid: 4a0e2db724d71f9499fa536438e48a60,
+        type: 3}
+      propertyPath: _parameter
+      value: 5215307055193128961
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733369572480827594, guid: 4a0e2db724d71f9499fa536438e48a60,
+        type: 3}
+      propertyPath: managedReferences[5215307055193128960]
+      value: Assembly-CSharp XpbdSimulator/Parameter
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733369572480827594, guid: 4a0e2db724d71f9499fa536438e48a60,
+        type: 3}
+      propertyPath: managedReferences[5215307055193128961]
+      value: Assembly-CSharp PbdSimulator/Parameter
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733369572480827594, guid: 4a0e2db724d71f9499fa536438e48a60,
+        type: 3}
+      propertyPath: managedReferences[5215307055193128960].gravity.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733369572480827594, guid: 4a0e2db724d71f9499fa536438e48a60,
+        type: 3}
+      propertyPath: managedReferences[5215307055193128960].gravity.y
+      value: -9.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733369572480827594, guid: 4a0e2db724d71f9499fa536438e48a60,
+        type: 3}
+      propertyPath: managedReferences[5215307055193128960].gravity.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733369572480827594, guid: 4a0e2db724d71f9499fa536438e48a60,
+        type: 3}
+      propertyPath: managedReferences[5215307055193128961].gravity.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733369572480827594, guid: 4a0e2db724d71f9499fa536438e48a60,
+        type: 3}
+      propertyPath: managedReferences[5215307055193128961].gravity.y
+      value: -9.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733369572480827594, guid: 4a0e2db724d71f9499fa536438e48a60,
+        type: 3}
+      propertyPath: managedReferences[5215307055193128961].gravity.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733369572480827594, guid: 4a0e2db724d71f9499fa536438e48a60,
+        type: 3}
+      propertyPath: managedReferences[5215307055193128961].stiffness
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733369572480827594, guid: 4a0e2db724d71f9499fa536438e48a60,
+        type: 3}
       propertyPath: managedReferences[5215307034966098534].iterations
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733369572480827594, guid: 4a0e2db724d71f9499fa536438e48a60,
+        type: 3}
+      propertyPath: managedReferences[5215307055193128960].iterations
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733369572480827594, guid: 4a0e2db724d71f9499fa536438e48a60,
+        type: 3}
+      propertyPath: managedReferences[5215307055193128961].iterations
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733369572480827594, guid: 4a0e2db724d71f9499fa536438e48a60,
+        type: 3}
+      propertyPath: managedReferences[5215307055193128960].flexibility
+      value: 0.001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
