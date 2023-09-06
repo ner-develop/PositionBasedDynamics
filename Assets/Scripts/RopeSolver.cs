@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(RopeObject))]
 public class RopeSolver : MonoBehaviour
 {
-	public enum Algorithm
+	enum Algorithm
 	{
 		PBD,
 		XPBD,
@@ -39,7 +39,7 @@ public class RopeSolver : MonoBehaviour
 		_initialized = true;
 
 		_ropeObject = GetComponent<RopeObject>();
-		_simulator = GenerateSimulator(_ropeObject, _parameter);
+		_simulator = GenerateSimulator(_algorithm, _parameter, _ropeObject);
 	}
 
 	public void UpdateManually(float dt)
@@ -47,17 +47,14 @@ public class RopeSolver : MonoBehaviour
 		_simulator?.Step(dt);
 	}
 
-	ISimulator GenerateSimulator(RopeObject ropeObject, ISimulationParameter parameter)
+	ISimulator GenerateSimulator(Algorithm algorithm, ISimulationParameter parameter, RopeObject ropeObject)
 	{
-		switch (_algorithm)
+		return algorithm switch
 		{
-			case Algorithm.PBD:
-				return new PbdSimulator((PbdSimulator.Parameter)parameter, ropeObject);
-			case Algorithm.XPBD:
-				return new XpbdSimulator((XpbdSimulator.Parameter)parameter, ropeObject);
-			default:
-				throw new ArgumentOutOfRangeException();
-		}
+			Algorithm.PBD => new PbdSimulator((PbdSimulator.Parameter)parameter, ropeObject),
+			Algorithm.XPBD => new XpbdSimulator((XpbdSimulator.Parameter)parameter, ropeObject),
+			_ => throw new ArgumentOutOfRangeException()
+		};
 	}
 
 
