@@ -47,7 +47,7 @@ public class XpbdSimulator : ISimulator
 			var C = distance - d;
 			var αTilda = α / (dt * dt);
 			var ΔC = vector / distance;
-			float invM = 1 / (p1.m + p2.m);
+			float invM = p1.w + p2.w;
 			return (C - αTilda * λ) / (Vector3.Dot(ΔC, invM * ΔC) + αTilda);
 		}
 
@@ -141,8 +141,8 @@ public class XpbdSimulator : ISimulator
 
 				// update
 				c.λ = c.λ + Δλ;
-				c.p1.xi = c.p1.xi + c.p1.w * c.p1.w * Δx;
-				c.p2.xi = c.p2.xi - c.p2.w * c.p2.w * Δx;
+				c.p1.xi = c.p1.xi + c.p1.w * Δx;
+				c.p2.xi = c.p2.xi - c.p2.w * Δx;
 			}
 
 			i = i + 1;
